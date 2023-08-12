@@ -1,0 +1,133 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="zxx" class="no-js">
+
+<head>
+	<!-- Mobile Specific Meta -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Favicon-->
+	<link rel="shortcut icon" href="{% static 'img/fav.png' %}">
+	<!-- Author Meta -->
+	<meta name="author" content="CodePixar">
+	<!-- Meta Description -->
+	<meta name="description" content="">
+	<!-- Meta Keyword -->
+	<meta name="keywords" content="">
+	<!-- meta character set -->
+	<meta charset="UTF-8">
+	<!-- Site Title -->
+	<title>Karma Shop</title>
+
+	<!--
+		CSS
+		============================================= -->
+	<link rel="stylesheet" href="{% static 'css/linearicons.css' %}">
+	<link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}">
+	<link rel="stylesheet" href="{% static 'css/themify-icons.css' %}">
+	<link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/nice-select.css' %}">
+	<link rel="stylesheet" href="{% static 'css/nouislider.min.css' %}">
+	<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+	<link rel="stylesheet" href="{% static 'css/main.css' %}">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>  
+</head>
+
+<body>
+
+	
+	<!-- Start Banner Area -->
+	<section class="banner-area organic-breadcrumb">
+		<div class="container">
+			<div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+				<div class="col-first">
+					<h1>signup </h1>
+					<nav class="d-flex align-items-center">
+						Home<span class="lnr lnr-arrow-right"></span></a>
+						signup </a>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- End Banner Area -->
+
+	<!--================Login Box Area =================-->
+	<section class="login_box_area section_gap">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6">
+					<div class="login_box_img">
+						<img class="img-fluid" src="{% static 'img/login.jpg' %}" alt="">
+						<div class="hover">
+							<h4>New to our website?</h4>
+							<p>There are advances being made in science and technology everyday, and a good example of this is the</p>
+							<a class="primary-btn" href="registration.html">Create an Account</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<div class="login_form_inner">
+						<h3>sign up </h3>
+						{% if msg%}
+						{{msg}}
+						{% endif%}
+						<form class="row login_form" action="{% url 'signup' %}" method="post" id="contactForm" novalidate="novalidate">
+							{% csrf_token %}
+							<div class="col-md-12 form-group">
+								<input type="text" class="form-control" id="fname" name="fname" placeholder="fname" onfocus="this.placeholder = ''" onblur="this.placeholder = 'fname'">
+							</div>
+							<div class="col-md-12 form-group">
+								<input type="text" class="form-control" id="lname" name="lname" placeholder="lname" onfocus="this.placeholder = ''" onblur="this.placeholder = 'lname'">
+							</div>
+							<div class="col-md-12 form-group">
+								<input type="email" class="form-control" id="email" name="email" placeholder="email">
+								<span id="email_error"></span>
+								
+							</div>
+
+							<div class="col-md-12 form-group">
+								<input type="text" class="form-control" id="mobile" name="mobile" placeholder="mobile" onfocus="this.placeholder = ''" onblur="this.placeholder = 'mobile'">
+							</div>
+							<div class="col-md-12 form-group">
+								<input type="password" class="form-control" id="password" name="password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
+							</div>
+							<div class="col-md-12 form-group">
+								<input type="password" class="form-control" id="cpassword" name="cpassword" placeholder="cpassword" onfocus="this.placeholder = ''" onblur="this.placeholder = 'confirm password'">
+							</div>
+						
+							<div class="col-md-12 form-group">
+								<button type="submit" value="submit" class="primary-btn">Sign up </button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--================End Login Box Area =================-->
+		<script>
+			$("#email").change(function(){
+				var email=$(this).val();
+				
+				$.ajax({
+        			url: '/ajax/validate_email/',
+        			data: {
+        				'email': email
+        			}, 
+        			dataType: 'json',
+        			success: function(data){
+        				if(data.is_taken){
+        					document.getElementById("email_error").innerHTML="This email ID is already registed"
+        				}else{
+        					document.getElementById("email_error").innerHTML="";
+        				}
+           			}
+           		});
+           	});
+</script>
+</body>
+
+</html>
+{% endblock %}

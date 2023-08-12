@@ -1,0 +1,38 @@
+from django.urls import path
+from .import views
+urlpatterns = [
+    path('',views.index,name='index'),
+    path('signup/',views.signup,name='signup'),
+    path('blog/',views.blog,name='blog'),
+    path('login/',views.login,name='login'),
+    path('logout/',views.logout,name='logout'),
+    path('change-password/',views.change_password,name='change-password'),
+    path('forgotpassword/',views.forgotpassword,name='forgotpassword'),
+    path('verifyotp/',views.verifyotp,name='verifyotp'),
+    path('newpassword/',views.newpassword,name='newpassword'),
+    path('ssignup/',views.ssignup,name='ssignup'),
+    path('slogin/',views.slogin,name='slogin'),
+    path('slogout/',views.slogout,name='slogout'),
+    path('sindex/',views.sindex,name='sindex'),
+    path('seller-add-product/',views.seller_add_product,name='seller-add-product'),
+    path('seller-view-product/',views.seller_view_product,name='seller-view-product'),
+    path('seller-product-details/<int:pk>/',views.seller_product_details,name='seller-product-details'),
+    path('seller-edit-product/<int:pk>/',views.seller_edit_product,name='seller-edit-product'),
+    path('seller-delete-product/<int:pk>/',views.seller_delete_product,name='seller-delete-product'),
+    path('category/',views.category,name='category'),
+    path('product-details/<int:pk>/',views.product_details,name='product-details'),
+    path('add-to-wishlist/<int:pk>/',views.add_to_wishlist,name='add-to-wishlist'),
+    path('wishlist/',views.wishlist,name='wishlist'),
+    path('remove-from-wishlist/<int:pk>/',views.remove_from_wishlist,name='remove-from-wishlist'),
+    
+    path('add-to-cart/<int:pk>/',views.add_to_cart,name='add-to-cart'),
+    path('cart/',views.cart,name='cart'),
+    path('remove-from-cart/<int:pk>/',views.remove_from_cart,name='remove-from-cart'),
+    path('cqty/',views.cqty,name='cqty'),
+    path('create-checkout-session/',views.create_checkout_session,name='payment'),
+    path('success.html/', views.success,name='success'),
+    path('cancel.html/', views.cancel,name='cancel'),
+    path('myorder/',views.myorder,name='myorder'),
+    path('ajax/validate_email/',views.validate_signup,name='validate_email'),
+]
+
